@@ -1,52 +1,20 @@
-
-
-//import config
-const config = require('./utils/config')
-
-
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 
-const blogSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  url: String,
-  likes: Number
-})
+//import config
+const config = require('./utils/config')
 
-const Blog = mongoose.model('Blog', blogSchema)
-
-const mongoUrl = config.mongoUrl
-
-mongoose.connect(mongoUrl)
 
 app.use(cors())
 app.use(express.json())
 
-app.get('/suck', (request, response) => {
-  response.send('<div>suck<div>')
-})
+//import route controller middleware - must take this middleware into use after json parser
+const blogsRouter = require('./controllers/blogs')
+app.use('/api/blogs', blogsRouter)
 
-app.get('/api/blogs', (request, response) => {
-  Blog
-    .find({})
-    .then(blogs => {
-      response.json(blogs)
-    })
-})
-
-app.post('/api/blogs', (request, response) => {
-  const blog = new Blog(request.body)
-
-  blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
-    })
-})
-
+mongoose.connect(config.mongoUrl)
 const PORT = config.port
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)

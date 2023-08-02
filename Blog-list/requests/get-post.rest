@@ -1,0 +1,22 @@
+### GET ALL
+GET http://localhost:3001/api/blogs/
+### CREATE NEW TEST
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+
+    {
+        "title": "titleTest",
+        "author": "authorTest",
+        "url": "urlTest",
+        "likes": 0
+    }
+### CREATE NEW TEST1
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+
+    {
+        "title": "titleTest1",
+        "author": "authorTest1",
+        "url": "urlTest1",
+        "likes": 1
+    }    

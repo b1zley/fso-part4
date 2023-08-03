@@ -7,8 +7,7 @@ content-type: application/json
     {
         "title": "titleTest",
         "author": "authorTest",
-        "url": "urlTest",
-        "likes": 0
+        "url": "urlTest"
     }
 ### CREATE NEW TEST1
 POST http://localhost:3001/api/blogs/
@@ -20,3 +19,21 @@ content-type: application/json
         "url": "urlTest1",
         "likes": 1
     }    
+### CREATE NEW BAD URL
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+
+    {
+        "title": "titleTest1",
+        "author": "authorTest1",
+        "likes": 1
+    }
+### CREATE NEW BAD TITLE
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+
+    {
+        "author": "authorTest1",
+        "url": "urlTest1",
+        "likes": 1
+    }        

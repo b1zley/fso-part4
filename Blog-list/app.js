@@ -12,6 +12,8 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 //import route controller middleware - must take this middleware into use after json parser
 const blogsRouter = require('./controllers/blogs')
+//import route controller middleware for users
+const usersRouter = require('./controllers/users')
 
 
 //use cors
@@ -24,6 +26,8 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 //use blogsRouter
 app.use('/api/blogs', blogsRouter)
+// use blogRouter
+app.use('/api/users', usersRouter)
 //use unkendpoint middleware
 app.use(middleware.unknownEndpoint)
 //use errorhandler middleware

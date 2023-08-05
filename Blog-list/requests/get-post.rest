@@ -1,3 +1,23 @@
+###DELETE 1
+DELETE http://localhost:3001/api/blogs/64cc130ab1929ae04075b36e
+###GET 1
+GET http://localhost:3001/api/blogs/64ca55c15efcf80ddda93fdd
+###GET 1 ID VALID BUT NOT FOUND
+GET http://localhost:3001/api/blogs/64ca57c15efcf81ddda93fcd
+###GET 1 ID INVALID 
+GET http://localhost:3001/api/blogs/1
+
+###PUT 1 VALID AND FOUND
+PUT http://localhost:3001/api/blogs/1
+content-type: application/json
+
+    {
+        "title": "titleTest",
+        "author": "authorTest",
+        "url": "urlTest",
+        "likes": 900
+    }
+
 ### GET ALL
 GET http://localhost:3001/api/blogs/
 ### CREATE NEW TEST

@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+//import async error handler
+require('express-async-errors')
 const cors = require('cors')
 const mongoose = require('mongoose')
 //import config

@@ -4,10 +4,28 @@ POST http://localhost:3001/api/users/
 content-type: application/json
 
     {
-        "username": "1",
+        "username": "newUser",
         "name": "test2Name",
         "blogs": [
 
         ],
         "password": "1111"
+    }
+###
+DELETE http://localhost:3001/api/users/
+###
+GET http://localhost:3001/api/blogs/
+###
+DELETE http://localhost:3001/api/blogs/
+
+### 64ce8e9b9ee02bc4f66f7020
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+
+    {
+        "title": "newUserBlog2",
+        "author": "newUser",
+        "url": "urlTest1",
+        "likes": 1000000,
+        "userId": "64ce926848bdcf15c151ddb9"
     }

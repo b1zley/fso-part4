@@ -4,7 +4,7 @@ const loginRouter = require('express').Router()
 const User = require('../models/user')
 const { response } = require('../app')
 
-loginRouter.post('/', async (req, res) => {
+loginRouter.post('/', async (request, response) => {
     const body = request.body
     const username = body.username
     const password = body.password

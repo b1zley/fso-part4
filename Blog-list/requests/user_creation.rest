@@ -4,12 +4,12 @@ POST http://localhost:3001/api/users/
 content-type: application/json
 
     {
-        "username": "newUser",
+        "username": "test",
         "name": "test2Name",
         "blogs": [
 
         ],
-        "password": "1111"
+        "password": "test"
     }
 ###
 DELETE http://localhost:3001/api/users/

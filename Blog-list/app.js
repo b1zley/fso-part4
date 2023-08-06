@@ -14,6 +14,8 @@ const logger = require('./utils/logger')
 const blogsRouter = require('./controllers/blogs')
 //import route controller middleware for users
 const usersRouter = require('./controllers/users')
+//import router controller middleware for login
+const loginRouter = require('./controllers/login')
 
 
 //use cors
@@ -28,6 +30,8 @@ app.use(middleware.requestLogger)
 app.use('/api/blogs', blogsRouter)
 // use blogRouter
 app.use('/api/users', usersRouter)
+// use loginRouter
+app.use('/api/login', loginRouter)
 //use unkendpoint middleware
 app.use(middleware.unknownEndpoint)
 //use errorhandler middleware

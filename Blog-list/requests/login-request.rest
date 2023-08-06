@@ -7,13 +7,21 @@ content-type: application/json
         "username": "test",
         "password": "test"
     }
+### login with test2 - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWQiOiI2NGNmN2Q0MGQ2MGI5M2Y5Yjk5NWFmODEiLCJpYXQiOjE2OTEzMTk2ODN9.9NqWBMV_VbbZKRI88HvlYz350LfxeX29pd-jKyStk-E
+POST http://localhost:3001/api/login/
+content-type: application/json
+
+    {
+        "username": "test2",
+        "password": "test"
+    }
 ###
 POST http://localhost:3001/api/blogs/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y2MzA2NzJjZjYyNzg0MWZkODNkZSIsImlhdCI6MTY5MTMxNjQ1M30.Z8BzeZYGBGipud1iXq0sYwsSPvKpm47-_xRsqp1a_aI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y3ODFlZDBmMTYwNjk5MTEyMTM3NiIsImlhdCI6MTY5MTMxODMyNH0.83f5LDAgTubVy6ogRhTDORd_xJpcac5N1Nt_upp4lCQ
 
     {
-        "title": "testPost1108",
+        "title": "testPost1139",
         "author": "test",
         "url": "test"  
     }
@@ -21,3 +29,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 GET http://localhost:3001/api/blogs/
 ###
 GET http://localhost:3001/api/users/
+###
+DELETE http://localhost:3001/api/blogs/64cf86f8af18e88cb079f6af
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y3ODFlZDBmMTYwNjk5MTEyMTM3NiIsImlhdCI6MTY5MTMxODMyNH0.83f5LDAgTubVy6ogRhTDORd_xJpcac5N1Nt_upp4lCQ
+### del with test2
+DELETE http://localhost:3001/api/blogs/64cf870faf18e88cb079f6b7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWQiOiI2NGNmN2Q0MGQ2MGI5M2Y5Yjk5NWFmODEiLCJpYXQiOjE2OTEzMTk4MDB9.GBFM9S2bbubOosL6yc3iTyc62uKZyeedqUzA3US0puE
+
+
+### DELETE ALL
+DELETE http://localhost:3001/api/blogs/

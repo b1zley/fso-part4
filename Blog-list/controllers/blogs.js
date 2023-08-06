@@ -6,9 +6,10 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 
 //helper function which gets token code from authorization header
+//this function has been deprecated by the tokenExtractor middleware... 
+//access authorization header via request.token
 const getTokenFrom = (request) => {
     const authorization = request.get('authorization')
-    console.log(authorization)
     if (authorization && authorization.startsWith('Bearer ')) {
         return authorization.replace('Bearer ', '')
     } else {
@@ -106,16 +107,10 @@ blogsRouter.post('/', async (request, response, next) => {
         request.body.likes = 0
     }
 
-    const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
-    
-    if (!decodedToken.id){
-        return response.status(401).json({error: 'token invalid'})
+    const user = request.user
+    if (user === undefined) {
+        return response.status(401).json({ error: 'invalid token' })
     }
-
-
-
-    const user = await User.findById(decodedToken.id)
-
 
     const body = request.body
     const blog = new Blog({
@@ -141,15 +136,49 @@ blogsRouter.post('/', async (request, response, next) => {
     else {
         const result = await blog.save()
         user.blogs = user.blogs.concat(result._id)
-        console.log(result._id)
         await user.save()
         response.status(201).json(result)
     }
 })
-
+//delete one
 blogsRouter.delete('/:id', async (request, response, next) => {
+    // must change this function so that deletion
+    // operations can only be carried out by the 
+    // user who created the entry
+
+    //first - must check the authorization token
+    //supplied as header matches to a user
+    const user = request.user
+    if (user === undefined) {
+        return response.status(401).json({ error: 'invalid token' })
+    }
+
+    //user is the user which corresponds to the auth - token
+
+    //now must make sure user from request 
+    // and user who created post for deletion
+    // are equal, some screwing around required
+
+
 
     const requestId = request.params.id
+
+
+    // use requestId to find blog to be removed
+
+    const blogToRemove = await Blog.findById(requestId)
+    if (blogToRemove === null) {
+        console.log('deletion unsuccessful - object not found')
+        return (response.status(404).end())
+    }
+
+
+    if (blogToRemove.user.toString() !== user.id.toString()) {
+        return response.status(401).json({ error: 'token invalid - you sneaky pete!' })
+    }
+
+    // console.log('user who created blog: ',userWhoCreatedBlog)
+    // console.log('user requesting deletion:', user)
 
     //checking format of request Id
     //example requestId 
@@ -163,6 +192,10 @@ blogsRouter.delete('/:id', async (request, response, next) => {
         console.log('format not accepted')
         response.status(400).end()
     }
+    const attemptToFindById = await Blog.findById(request.params.id)
+
+    
+
 
     const responseFromDeletion = await Blog.findByIdAndRemove(request.params.id)
 

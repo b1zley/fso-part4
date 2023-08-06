@@ -26,6 +26,11 @@ app.use(express.static('build'))
 app.use(express.json())
 //use req logger middleware
 app.use(middleware.requestLogger)
+// use tokenExtractor middleware
+app.use(middleware.tokenExtractor)
+// use userExtractor - must be taken into use
+// after tokenExtractor middleware
+app.use(middleware.userExtractor)
 //use blogsRouter
 app.use('/api/blogs', blogsRouter)
 // use blogRouter

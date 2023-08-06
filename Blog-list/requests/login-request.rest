@@ -7,3 +7,17 @@ content-type: application/json
         "username": "test",
         "password": "test"
     }
+###
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y2MzA2NzJjZjYyNzg0MWZkODNkZSIsImlhdCI6MTY5MTMxNjQ1M30.Z8BzeZYGBGipud1iXq0sYwsSPvKpm47-_xRsqp1a_aI
+
+    {
+        "title": "testPost1108",
+        "author": "test",
+        "url": "test"  
+    }
+###
+GET http://localhost:3001/api/blogs/
+###
+GET http://localhost:3001/api/users/

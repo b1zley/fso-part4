@@ -1,6 +1,23 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 const User = require('../models/user')
+
+//import jwt here as well as in app.js
+const jwt = require('jsonwebtoken')
+
+//helper function which gets token code from authorization header
+const getTokenFrom = (request) => {
+    const authorization = request.get('authorization')
+    console.log(authorization)
+    if (authorization && authorization.startsWith('Bearer ')) {
+        return authorization.replace('Bearer ', '')
+    } else {
+        return null
+    }
+}
+
+
+
 //delete all
 blogsRouter.delete('/', async (request, response) => {
     const removeManyResponse = await Blog.deleteMany({})
@@ -13,7 +30,7 @@ blogsRouter.get('/', async (request, response) => {
     //         response.json(blogs)
     //     })
 
-    const blogs = await Blog.find({}).populate('user',{username: 1, name: 1, id: 1})
+    const blogs = await Blog.find({}).populate('user', { username: 1, name: 1, id: 1 })
     response.json(blogs)
 })
 
@@ -30,7 +47,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
     const body = request.body
 
     const user = await User.findById(body.userId)
-    
+
 
 
     const blogToPut = {
@@ -61,8 +78,8 @@ blogsRouter.put('/:id', async (request, response, next) => {
     if (!regexIdFormat.test(request.params.id)) {
         console.log('format not accepted')
         response.status(400).send('id format not accepted')
-    } else if (!idList.includes(request.params.id) || 
-                    !userIdList.includes(body.userId)) {
+    } else if (!idList.includes(request.params.id) ||
+        !userIdList.includes(body.userId)) {
         console.log('id not found')
         response.status(404).send('id not found')
     } else {
@@ -88,26 +105,37 @@ blogsRouter.post('/', async (request, response, next) => {
     if (request.body.likes === undefined) {
         request.body.likes = 0
     }
-    const user = await User.findById(request.body.userId)
+
+    const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
+    
+    if (!decodedToken.id){
+        return response.status(401).json({error: 'token invalid'})
+    }
+
+
+
+    const user = await User.findById(decodedToken.id)
+
+
     const body = request.body
     const blog = new Blog({
-        
+
         title: body.title,
         author: body.author,
         url: body.url,
         likes: body.likes,
-        user: user.id
+        user: user._id
 
     })
 
 
-    
+
 
 
 
     if (blog.url === undefined || blog.title === undefined) {
         response.status(400).send('bad post request - missing url or title')
-    } else if (!user){
+    } else if (!user) {
         response.status(400).send('bad post - user not found')
     }
     else {

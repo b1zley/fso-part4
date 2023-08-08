@@ -1,6 +1,6 @@
 
 ###
-POST http://localhost:3001/api/login/
+POST http://localhost:3003/api/login/
 content-type: application/json
 
     {
@@ -8,7 +8,7 @@ content-type: application/json
         "password": "test"
     }
 ### login with test2 - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiaWQiOiI2NGNmN2Q0MGQ2MGI5M2Y5Yjk5NWFmODEiLCJpYXQiOjE2OTEzMTk2ODN9.9NqWBMV_VbbZKRI88HvlYz350LfxeX29pd-jKyStk-E
-POST http://localhost:3001/api/login/
+POST http://localhost:3003/api/login/
 content-type: application/json
 
     {
@@ -16,19 +16,19 @@ content-type: application/json
         "password": "test"
     }
 ###
-POST http://localhost:3001/api/blogs/
+POST http://localhost:3003/api/blogs/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y3ODFlZDBmMTYwNjk5MTEyMTM3NiIsImlhdCI6MTY5MTMxODMyNH0.83f5LDAgTubVy6ogRhTDORd_xJpcac5N1Nt_upp4lCQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0ZDBlN2RjNzNmZTRkNzNhMmQwYmYwYSIsImlhdCI6MTY5MTQzMjg2N30.R8jwgHl4EY2rzHour653Yo3t6YesEyT8cY1Ixs5iMes
 
     {
-        "title": "testPost1139",
-        "author": "test",
-        "url": "test"  
+        "title": "",
+        "author": "",
+        "url": ""  
     }
 ###
-GET http://localhost:3001/api/blogs/
+GET http://localhost:3003/api/blogs/
 ###
-GET http://localhost:3001/api/users/
+GET http://localhost:3003/api/users/
 ###
 DELETE http://localhost:3001/api/blogs/64cf86f8af18e88cb079f6af
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY0Y2Y3ODFlZDBmMTYwNjk5MTEyMTM3NiIsImlhdCI6MTY5MTMxODMyNH0.83f5LDAgTubVy6ogRhTDORd_xJpcac5N1Nt_upp4lCQ
@@ -38,4 +38,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 
 
 ### DELETE ALL
-DELETE http://localhost:3001/api/blogs/
+DELETE http://localhost:3003/api/blogs/
+### DELETE ALL USERS
+DELETE http://localhost:3003/api/users

@@ -8,7 +8,7 @@ GET http://localhost:3001/api/blogs/64ca57c15efcf81ddda93fcd
 GET http://localhost:3001/api/blogs/1
 
 ###PUT 1 VALID AND FOUND
-PUT http://localhost:3001/api/blogs/1
+PUT http://localhost:3003/api/blogs/1
 content-type: application/json
 
     {
@@ -21,7 +21,7 @@ content-type: application/json
 ### GET ALL
 GET http://localhost:3001/api/blogs/
 ### CREATE NEW TEST
-POST http://localhost:3001/api/blogs/
+POST http://localhost:3003/api/blogs/
 content-type: application/json
 
     {

@@ -1,15 +1,15 @@
 GET http://localhost:3001/api/users/
 ###
-POST http://localhost:3001/api/users/
+POST http://localhost:3003/api/users/
 content-type: application/json
 
     {
-        "username": "test2",
-        "name": "test2Name",
+        "username": "t3st",
+        "name": "t3st2Name",
         "blogs": [
 
         ],
-        "password": "test"
+        "password": "t3st"
     }
 ###
 DELETE http://localhost:3001/api/users/
@@ -19,7 +19,7 @@ GET http://localhost:3001/api/blogs/
 DELETE http://localhost:3001/api/blogs/
 
 ### 64ce8e9b9ee02bc4f66f7020
-POST http://localhost:3001/api/blogs/
+POST http://localhost:3003/api/blogs/
 content-type: application/json
 
     {

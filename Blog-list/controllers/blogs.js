@@ -46,8 +46,9 @@ blogsRouter.get('/:id', async (request, response) => {
 //put requests
 blogsRouter.put('/:id', async (request, response, next) => {
     const body = request.body
-
-    const user = await User.findById(body.userId)
+    console.log('request body = ', body)
+    const user = await User.findById(body.user.id)
+    console.log('user = ', user)
 
 
 
@@ -80,13 +81,13 @@ blogsRouter.put('/:id', async (request, response, next) => {
         console.log('format not accepted')
         response.status(400).send('id format not accepted')
     } else if (!idList.includes(request.params.id) ||
-        !userIdList.includes(body.userId)) {
+        !userIdList.includes(body.user.id)) {
         console.log('id not found')
         response.status(404).send('id not found')
     } else {
         console.log('format accepted, id found')
-        user.notes = user.notes.concat(savedNote._id)
-        await user.save()
+        // user.notes = user.notes.concat(savedNote._id)
+        // await user.save()
         const responseFromPut = await Blog.findByIdAndUpdate(request.params.id, blogToPut, { new: true })
         // response.json(responseFromPut)
         response.send(responseFromPut)
@@ -103,6 +104,8 @@ blogsRouter.put('/:id', async (request, response, next) => {
 
 //post requests
 blogsRouter.post('/', async (request, response, next) => {
+    
+    
     if (request.body.likes === undefined) {
         request.body.likes = 0
     }
@@ -135,6 +138,7 @@ blogsRouter.post('/', async (request, response, next) => {
     }
     else {
         const result = await blog.save()
+        console.log('result populate', await result.populate('user', { username: 1, name: 1, id: 1 }))
         user.blogs = user.blogs.concat(result._id)
         await user.save()
         response.status(201).json(result)

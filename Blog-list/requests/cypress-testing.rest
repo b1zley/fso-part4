@@ -1,0 +1,26 @@
+POST http://localhost:3003/api/testing/reset
+###
+GET http://localhost:3003/api/blogs
+###
+GET http://localhost:3003/api/users
+###
+POST http://localhost:3003/api/users/
+content-type: application/json
+
+    {
+        "username": "t3st",
+        "name": "test2Name",
+        "blogs": [
+
+        ],
+        "password": "t3st"
+    }
+
+###
+POST http://localhost:3003/api/login/
+content-type: application/json
+
+    {
+        "username": "test",
+        "password": "test"
+    }

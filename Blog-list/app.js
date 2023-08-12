@@ -16,6 +16,8 @@ const blogsRouter = require('./controllers/blogs')
 const usersRouter = require('./controllers/users')
 //import router controller middleware for login
 const loginRouter = require('./controllers/login')
+//import testing controller middleware for reset functionality
+const testingRouter = require('./controllers/testing')
 
 
 //use cors
@@ -37,6 +39,8 @@ app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 // use loginRouter
 app.use('/api/login', loginRouter)
+// use testingRouter
+app.use('/api/testing', testingRouter)
 //use unkendpoint middleware
 app.use(middleware.unknownEndpoint)
 //use errorhandler middleware

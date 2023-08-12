@@ -200,7 +200,6 @@ blogsRouter.delete('/:id', async (request, response, next) => {
 
     
 
-
     const responseFromDeletion = await Blog.findByIdAndRemove(request.params.id)
 
 
